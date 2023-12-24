@@ -1,14 +1,26 @@
-// Import packages
-const express = require("express");
-const home = require("./routes/home");
+import express from "express";
+import ejs from "ejs";
+import mongoose from "mongoose";
+import moment from "moment";
+import dotenv from 'dotenv';
+
+
+dotenv.config();
+const app = express();
+const PORT = process.env.PORT || 3000;
+const DATABASE_URL = process.env.DATABASE_URL || 'mongodb://127.0.0.1:27017/todolistDB';
 
 // Middlewares
-const app = express();
-app.use(express.json());
+app.engine(".html", ejs.__express);
+app.set("view engine", "html");
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
 
 // Routes
-app.use("/home", home);
+app.route("/")
+    .get(async (req, res) => {
+        res.send('Hello World');
+    })
 
 // connection
-const port = process.env.PORT || 9001;
-app.listen(port, () => console.log(`Listening to port ${port}`));
+app.listen(PORT, () => console.log(`Listening to PORT ${PORT}`));
