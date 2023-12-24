@@ -19,7 +19,7 @@ app.use(express.static("public"));
 // Routes
 app.route("/")
     .get(async (req, res) => {
-        res.send('Hello World');
+        res.render('list');
     })
 
 // connection
