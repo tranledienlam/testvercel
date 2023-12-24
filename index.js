@@ -11,8 +11,8 @@ const PORT = process.env.PORT || 3000;
 const DATABASE_URL = process.env.DATABASE_URL || 'mongodb://127.0.0.1:27017/todolistDB';
 
 // Middlewares
-app.engine(".html", ejs.__express);
-app.set("view engine", "html");
+// app.engine(".html", ejs.__express);
+app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
